@@ -25,26 +25,44 @@ import java.util.*;
  * 输出：-1
  * 解释：version1 中下标为 0 的修订号是 "0"，version2 中下标为 0 的修订号是 "1" 。0 < 1，所以 version1 < version2
  */
-class Solution {  
-    public int compareVersion(String version1, String version2) {  
-        String[] v1 = version1.split("\\.");  
-        String[] v2 = version2.split("\\.");  
-        int i = 0;  
-        while (i < v1.length || i < v2.length) {  
-            int x = 0, y = 0;  
-            if (i < v1.length) {  
-                x = Integer.parseInt(v1[i]);  
-            }  
-            if (i < v2.length) {  
-                y = Integer.parseInt(v2[i]);  
-            }  
-            if (x > y) {  
-                return 1;  
-            } else if (x < y) {  
-                return -1;  
-            }  
-            i++;  
-        }  
-        return 0;  
-    }  
+class Solution {    
+    // 方法用于比较两个版本号  
+    public int compareVersion(String version1, String version2) {    
+        // 使用点号（.）分割版本号字符串为修订号数组  
+        String[] v1 = version1.split("\\.");    
+        String[] v2 = version2.split("\\.");    
+          
+        // 使用一个索引变量i来遍历两个修订号数组  
+        int i = 0;    
+          
+        // 当至少有一个版本号还有修订号没有比较完时，继续循环  
+        while (i < v1.length || i < v2.length) {    
+            int x = 0, y = 0;    
+              
+            // 如果v1还有修订号未比较，将其转换为整数  
+            if (i < v1.length) {    
+                x = Integer.parseInt(v1[i]);    
+            }    
+              
+            // 如果v2还有修订号未比较，将其转换为整数  
+            if (i < v2.length) {    
+                y = Integer.parseInt(v2[i]);    
+            }    
+              
+            // 比较两个修订号  
+            if (x > y) {    
+                // 如果v1的当前修订号大于v2的，返回1，表示version1 > version2  
+                return 1;    
+            } else if (x < y) {    
+                // 如果v1的当前修订号小于v2的，返回-1，表示version1 < version2  
+                return -1;    
+            }    
+              
+            // 如果两个修订号相等，继续比较下一个修订号  
+            i++;    
+        }    
+          
+        // 如果所有修订号都比较完毕且都相等，返回0，表示两个版本号相等  
+        return 0;    
+    }    
 }
